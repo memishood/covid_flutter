@@ -16,6 +16,7 @@ class CountryDetailController extends GetxController with StateMixin<CountryDeta
   fetchCountry() {
     final List<dynamic> arguments = Get.arguments;
     final String countryName = arguments.first;
+    change(null, status: RxStatus.loading());
     provider.fetchCountry(countryName).then((result) {
       CountryDetailResponse? data = result.body;
       if (data != null && data.countryDetail.isNotEmpty == true) {

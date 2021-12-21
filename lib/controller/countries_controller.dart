@@ -12,13 +12,18 @@ class CountriesController extends GetxController with StateMixin<CountriesRespon
   final searchFieldController = TextEditingController();
 
   final searchText = "".obs;
-  search(String text) => searchText.value = text;
+  search(String text) {
+    if (text.isEmpty || text.length >= 3) {
+      change(null, status: RxStatus.loading());
+      searchText.value = text;
+    }
+  }
 
   @override
   void onInit() {
     fetchCountries();
     debounce(searchText, (text) {
-      if (text != null && text.toString().length >= 3) {
+      if (text.toString().isNotEmpty) {
         fetchCountries(countryName: text.toString());
       } else {
         fetchCountries();
@@ -27,12 +32,15 @@ class CountriesController extends GetxController with StateMixin<CountriesRespon
     super.onInit();
   }
 
-  fetchCountries({ String? countryName }) => provider.fetchCountries(countryName: countryName).then((result) {
-    CountriesResponse? data = result.body;
-    if (data != null && data.response.isNotEmpty == true) {
-      change(data, status: RxStatus.success());
-    } else {
-      change(null, status: RxStatus.empty());
-    }
-  }, onError: (err) => change(null, status: RxStatus.error(err.toString())));
+  fetchCountries({ String? countryName }) {
+    change(null, status: RxStatus.loading());
+    provider.fetchCountries(countryName: countryName).then((result) {
+      CountriesResponse? data = result.body;
+      if (data != null && data.response.isNotEmpty == true) {
+        change(data, status: RxStatus.success());
+      } else {
+        change(null, status: RxStatus.empty());
+      }
+    }, onError: (err) => change(null, status: RxStatus.error(err.toString())));
+  }
 }
