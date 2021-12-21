@@ -1,6 +1,7 @@
 import 'package:covid_flutter/common_ui/resources/text_styles.dart';
 import 'package:covid_flutter/controller/countries_controller.dart';
 import 'package:covid_flutter/features/countries/countries_item.dart';
+import 'package:covid_flutter/features/country_detail/country_detail_screen.dart';
 import 'package:covid_flutter/repository/countries_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,10 @@ class CountriesBinding extends Bindings {
 class CountriesScreen extends GetView<CountriesController> {
   const CountriesScreen({Key? key}) : super(key: key);
 
-  _countryPressed(String countryName) {
-
-  }
+  _countryPressed(String countryName) => Get.toNamed(
+      "/country_details",
+      arguments: <String>[countryName]
+  );
 
   @override
   Widget build(BuildContext context) => Scaffold(
