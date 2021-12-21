@@ -40,6 +40,7 @@ class CountriesScreen extends GetView<CountriesController> {
         body: Container(
           color: Theme.of(context).backgroundColor,
           child: controller.obx((state) => ListView.builder(
+            physics: const BouncingScrollPhysics(),
             itemCount: state?.results,
             itemBuilder: (context, index) => CountriesItem(
               countryName: state?.response[index],
@@ -63,7 +64,7 @@ class CountriesScreen extends GetView<CountriesController> {
                       fontSize: 21,
                       color: Colors.black
                   ),
-                ),
+                ).marginAll(20.0),
               )
           ),
         ),
