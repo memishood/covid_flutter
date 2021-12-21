@@ -1,4 +1,5 @@
 import 'package:covid_flutter/common_ui/resources/strings.dart';
+import 'package:covid_flutter/features/country_detail/country_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'features/countries/countries_screen.dart';
@@ -23,8 +24,19 @@ class MyApp extends StatelessWidget {
     fallbackLocale: const Locale("en", "US"),
     theme: ThemeData(
       primaryColor: Colors.deepPurple,
+      colorScheme: const ColorScheme.light(
+        primary: Colors.deepPurple
+      ),
       backgroundColor: Colors.white,
       cardColor: const Color(0xffe8d1ff)
     ),
+    getPages: [
+      GetPage(
+          name: "/country_details",
+          page: () => const CountryDetailScreen(),
+          binding: CountryDetailBinding(),
+          transition: Transition.fadeIn
+      )
+    ],
   );
 }

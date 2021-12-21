@@ -11,10 +11,12 @@ class Strings extends Translations {
   final _trStrings = {
     "search": "Ara",
     "empty": "Sonuç bulunamadı",
+    "country_details_title": "Ülke Detayları",
   };
 
   final _enStrings = {
     "search": "Search",
     "empty": "Result not found",
+    "country_details_title": "Country Details",
   };
 }
