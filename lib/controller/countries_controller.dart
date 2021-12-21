@@ -14,13 +14,13 @@ class CountriesController extends GetxController with StateMixin<CountriesRespon
   final searchText = "".obs;
   search(String text) {
     if (text.isEmpty || text.length >= 3) {
-      change(null, status: RxStatus.loading());
       searchText.value = text;
     }
   }
 
   @override
   void onInit() {
+    ever(searchText, (text) => change(null, status: RxStatus.loading()));
     fetchCountries();
     debounce(searchText, (text) {
       if (text.toString().isNotEmpty) {
