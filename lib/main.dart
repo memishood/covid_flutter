@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
     theme: ThemeData(
       primaryColor: Colors.deepPurple,
       backgroundColor: Colors.white,
+      cardColor: const Color(0xffffd1d1)
     ),
   );
 }
