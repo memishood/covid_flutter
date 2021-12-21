@@ -31,6 +31,7 @@ class CountriesScreen extends GetView<CountriesController> {
             backgroundColor: Theme.of(context).backgroundColor,
             title: CupertinoSearchTextField(
               controller: controller.searchFieldController,
+              onChanged: controller.search,
             ),
           )
         ],
@@ -44,6 +45,15 @@ class CountriesScreen extends GetView<CountriesController> {
             ),
           ),
               onLoading: const Center(child: CircularProgressIndicator()),
+              onEmpty: Center(
+                child: Text(
+                  "empty".tr,
+                  style: TextStyles.regularTextStyle.copyWith(
+                    fontSize: 21,
+                    color: Colors.black
+                  ),
+                )
+              ),
               onError: (err) => Center(
                 child: Text(
                   err ?? "error",

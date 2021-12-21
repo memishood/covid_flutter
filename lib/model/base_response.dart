@@ -1,6 +1,6 @@
 /// @author emremms35@gmail.com
-class CountryResult {
-  const CountryResult({
+class BaseResponse {
+  const BaseResponse({
     required this.get,
     required this.parameters,
     required this.errors,
@@ -9,12 +9,12 @@ class CountryResult {
   });
 
   final String get;
-  final List<dynamic> parameters;
-  final List<dynamic> errors;
+  final dynamic parameters;
+  final dynamic errors;
   final int results;
   final List<dynamic> response;
 
-  factory CountryResult.fromJson(json) => CountryResult(
+  factory BaseResponse.fromJson(json) => BaseResponse(
       get: json["get"],
       parameters: json["parameters"],
       errors: json["errors"],
