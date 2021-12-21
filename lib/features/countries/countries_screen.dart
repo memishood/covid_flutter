@@ -1,4 +1,3 @@
-import 'package:covid_flutter/common_ui/resources/text_styles.dart';
 import 'package:covid_flutter/common_ui/views/empty_view.dart';
 import 'package:covid_flutter/common_ui/views/error_view.dart';
 import 'package:covid_flutter/controller/countries_controller.dart';
@@ -52,7 +51,14 @@ class CountriesScreen extends GetView<CountriesController> {
               onLoading: const Center(child: CircularProgressIndicator()),
               onEmpty: Center(
                 child: EmptyView(
-                  onPressed: () => controller.fetchCountries(),
+                  onPressed: () {
+                    if (controller.searchText.isNotEmpty
+                        && controller.searchText.value.length >= 3) {
+                      controller.fetchCountries(countryName: controller.searchText.value);
+                    } else {
+                      controller.fetchCountries();
+                    }
+                  },
                 ).marginAll(20.0)
               ),
               onError: (err) => Center(
