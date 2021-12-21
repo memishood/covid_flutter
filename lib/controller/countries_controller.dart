@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 /// @author emremms35@gmail.com
-class CountriesController extends GetxController with StateMixin<CountriesResponse> {
+class CountriesController extends GetxController with
+    StateMixin<CountriesResponse> {
   CountriesController({ required this.provider });
   final CountriesProvider provider;
 

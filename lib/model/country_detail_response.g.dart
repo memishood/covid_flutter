@@ -9,7 +9,7 @@ part of 'country_detail_response.dart';
 CountryDetailResponse _$CountryDetailResponseFromJson(
         Map<String, dynamic> json) =>
     CountryDetailResponse(
-      json['results'] as int,
+      json['results'] as int? ?? 0,
       (json['response'] as List<dynamic>)
           .map((e) => CountryDetail.fromJson(e as Map<String, dynamic>))
           .toList(),

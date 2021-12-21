@@ -54,7 +54,9 @@ class CountriesScreen extends GetView<CountriesController> {
                   onPressed: () {
                     if (controller.searchText.isNotEmpty
                         && controller.searchText.value.length >= 3) {
-                      controller.fetchCountries(countryName: controller.searchText.value);
+                      controller.fetchCountries(
+                          countryName: controller.searchText.value
+                      );
                     } else {
                       controller.fetchCountries();
                     }

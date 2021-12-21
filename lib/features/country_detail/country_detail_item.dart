@@ -58,13 +58,15 @@ class CountryDetailItem extends StatelessWidget {
       ).marginSymmetric(vertical: 5),
       Text(
         "critical".trParams({
-          "critical": countryDetail.caseDetails.critical?.toString() ?? "unknown".tr
+          "critical": countryDetail.caseDetails.critical?.toString()
+              ?? "unknown".tr
         }),
         style: TextStyles.regularTextStyle,
       ).marginSymmetric(vertical: 5),
       Text(
         "recovered".trParams({
-          "recovered": countryDetail.caseDetails.recovered?.toString() ?? "unknown".tr
+          "recovered": countryDetail.caseDetails.recovered?.toString()
+              ?? "unknown".tr
         }),
         style: TextStyles.regularTextStyle,
       ).marginSymmetric(vertical: 5),

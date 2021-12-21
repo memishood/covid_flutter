@@ -4,20 +4,28 @@ part 'country_detail_response.g.dart';
 /// @author emremms35@gmail.com
 @JsonSerializable()
 class CountryDetailResponse {
+  CountryDetailResponse(this.results, this.countryDetail);
+
+  factory CountryDetailResponse.fromJson(json)=>
+      _$CountryDetailResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$CountryDetailResponseToJson(this);
+
   @JsonKey(defaultValue: 0)
   int results;
 
   @JsonKey(name: "response")
   List<CountryDetail> countryDetail;
-
-  CountryDetailResponse(this.results, this.countryDetail);
-
-  factory CountryDetailResponse.fromJson(json) => _$CountryDetailResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$CountryDetailResponseToJson(this);
 }
 
 @JsonSerializable()
 class CountryDetail {
+  CountryDetail(this.continent, this.country, this.population,
+      this.caseDetails, this.deathsDetails, this.testDetails);
+
+  factory CountryDetail.fromJson(Map<String, dynamic> json) =>
+      _$CountryDetailFromJson(json);
+  Map<String, dynamic> toJson() => _$CountryDetailToJson(this);
+
   @JsonKey(includeIfNull: true)
   String? continent;
 
@@ -35,15 +43,16 @@ class CountryDetail {
 
   @JsonKey(name: "tests")
   Tests testDetails;
-
-  CountryDetail(this.continent, this.country, this.population, this.caseDetails, this.deathsDetails, this.testDetails);
-
-  factory CountryDetail.fromJson(Map<String, dynamic> json) => _$CountryDetailFromJson(json);
-  Map<String, dynamic> toJson() => _$CountryDetailToJson(this);
 }
 
 @JsonSerializable()
 class Cases {
+  Cases(this.newCases, this.active, this.critical,
+      this.recovered, this.percentPop, this.total);
+
+  factory Cases.fromJson(Map<String, dynamic> json) => _$CasesFromJson(json);
+  Map<String, dynamic> toJson() => _$CasesToJson(this);
+
   @JsonKey(name: "new", includeIfNull: true)
   String? newCases;
 
@@ -61,15 +70,15 @@ class Cases {
 
   @JsonKey(includeIfNull: true)
   int? total;
-
-  Cases(this.newCases, this.active, this.critical, this.recovered, this.percentPop, this.total);
-
-  factory Cases.fromJson(Map<String, dynamic> json) => _$CasesFromJson(json);
-  Map<String, dynamic> toJson() => _$CasesToJson(this);
 }
 
 @JsonSerializable()
 class Deaths {
+  Deaths(this.newDeaths, this.percentPop, this.total);
+
+  factory Deaths.fromJson(Map<String, dynamic> json) => _$DeathsFromJson(json);
+  Map<String, dynamic> toJson() => _$DeathsToJson(this);
+
   @JsonKey(name: "new", includeIfNull: true)
   String? newDeaths;
 
@@ -78,23 +87,18 @@ class Deaths {
 
   @JsonKey(includeIfNull: true)
   int? total;
-
-  Deaths(this.newDeaths, this.percentPop, this.total);
-
-  factory Deaths.fromJson(Map<String, dynamic> json) => _$DeathsFromJson(json);
-  Map<String, dynamic> toJson() => _$DeathsToJson(this);
 }
 
 @JsonSerializable()
 class Tests {
+  Tests(this.percentPop, this.total);
+
+  factory Tests.fromJson(Map<String, dynamic> json) => _$TestsFromJson(json);
+  Map<String, dynamic> toJson() => _$TestsToJson(this);
+
   @JsonKey(name: "1M_pop", includeIfNull: true)
   String? percentPop;
 
   @JsonKey(includeIfNull: true)
   int? total;
-
-  Tests(this.percentPop, this.total);
-
-  factory Tests.fromJson(Map<String, dynamic> json) => _$TestsFromJson(json);
-  Map<String, dynamic> toJson() => _$TestsToJson(this);
 }

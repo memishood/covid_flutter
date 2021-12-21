@@ -3,7 +3,8 @@ import 'package:covid_flutter/repository/country_detail_provider.dart';
 import 'package:get/get.dart';
 
 /// @author emremms35@gmail.com
-class CountryDetailController extends GetxController with StateMixin<CountryDetailResponse> {
+class CountryDetailController extends GetxController
+    with StateMixin<CountryDetailResponse> {
   CountryDetailController({required this.provider});
   final CountryDetailProvider provider;
 
