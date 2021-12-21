@@ -1,11 +1,11 @@
-import 'package:covid_flutter/model/base_response.dart';
+import 'package:covid_flutter/model/countries_response.dart';
 import 'package:get/get.dart';
 
 /// @author emremms35@gmail.com
 class CountriesProvider extends GetConnect {
   @override
   void onInit() {
-    httpClient.defaultDecoder = BaseResponse.fromJson;
+    httpClient.defaultDecoder = CountriesResponse.fromJson;
     httpClient.baseUrl = 'https://covid-193.p.rapidapi.com';
     httpClient.addRequestModifier<void>((request) {
       request.headers['x-rapidapi-host'] = 'covid-193.p.rapidapi.com';
@@ -13,15 +13,15 @@ class CountriesProvider extends GetConnect {
       return request;
     });
   }
-  Future<Response<BaseResponse>> fetchCountries({ String? countryName }) async {
+  fetchCountries({ String? countryName }) async {
     if (countryName != null) {
-      return get<BaseResponse>(
+      return get<CountriesResponse>(
         "/countries",
         query: {
           "search": countryName
         }
       );
     }
-    return get<BaseResponse>("/countries");
+    return get<CountriesResponse>("/countries");
   }
 }

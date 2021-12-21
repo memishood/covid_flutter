@@ -1,7 +1,8 @@
 import 'package:covid_flutter/common_ui/resources/text_styles.dart';
+import 'package:covid_flutter/common_ui/views/empty_view.dart';
+import 'package:covid_flutter/common_ui/views/error_view.dart';
 import 'package:covid_flutter/controller/countries_controller.dart';
 import 'package:covid_flutter/features/countries/countries_item.dart';
-import 'package:covid_flutter/features/country_detail/country_detail_screen.dart';
 import 'package:covid_flutter/repository/countries_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,27 +44,21 @@ class CountriesScreen extends GetView<CountriesController> {
             physics: const BouncingScrollPhysics(),
             itemCount: state?.results,
             itemBuilder: (context, index) => CountriesItem(
-              countryName: state?.response[index],
+              /// it can not be empty
+              countryName: state?.response[index] ?? "unknown".tr,
               countryPressed: _countryPressed,
             ),
           ),
               onLoading: const Center(child: CircularProgressIndicator()),
               onEmpty: Center(
-                child: Text(
-                  "empty".tr,
-                  style: TextStyles.regularTextStyle.copyWith(
-                    fontSize: 21,
-                    color: Colors.black
-                  ),
-                )
+                child: EmptyView(
+                  onPressed: () => controller.fetchCountries(),
+                ).marginAll(20.0)
               ),
               onError: (err) => Center(
-                child: Text(
-                  err ?? "error",
-                  style: TextStyles.boldTextStyle.copyWith(
-                      fontSize: 21,
-                      color: Colors.black
-                  ),
+                child: ErrorView(
+                  errorMessage: err,
+                  onPressed: () => controller.fetchCountries(),
                 ).marginAll(20.0),
               )
           ),
